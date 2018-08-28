@@ -22,21 +22,12 @@ namespace SpaceGame2._0
             }
 
             return gameOver;
-        }
-
-        public MainMenu()
-        {
-
-        }
-
-        Planet earth         = new Planet("Earth", 1, 0, 0, 0, 0);
-        Planet alphaCentauri = new Planet("Alpha Centauri", 2, 0, 4.367, 0, 4.367);
-        Planet trappist      = new Planet("TRAPPIST-1", 3, -3, 7, -3, 7);
+        }        
 
         public static void Menu(string userInput)
         {
             do
-            {
+            {                
                 UserInterface.PublicUI();
                 Console.WriteLine("You are on planet {0}! Current year is {1}!", 0, 0);
                 Console.WriteLine();

@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace SpaceGame2._0
 {
-    class Planet
+    public class Planet
     {
-        private string name;
-        private int planet;
-        private double x;
-        private double y;
-        private double destX;
-        private double destY;
+        public string name;
+        public int planet;
+        public double x;
+        public double y;
+        public double destX;
+        public double destY;
 
         public Planet()
         {
@@ -29,6 +29,5 @@ namespace SpaceGame2._0
             this.destX = destX;
             this.destY = destY;
         }
-
     }
 }
