@@ -8,6 +8,7 @@ namespace SpaceGame2._0
 {
     class Cargo
     {
+        #region Variables
         // credits
         public static int credits = 10000;
         public static int totalCredits = 0;
@@ -25,9 +26,10 @@ namespace SpaceGame2._0
         private static int invAnimals = 0;
         private static int invWater = 0;
         private static int invDarkMatter = 0;
-        private static int remInventory = maxInventory - inventory;
+        public static int remInventory = maxInventory - inventory;
         public static int inventory = 0;
-        public static int maxInventory = 3;       
+        public static int maxInventory = 3;
+        #endregion
 
         // Code for Inventory
         private static int InventoryTotal(int invFood, int invResearch, int invAnimals, int invWater, int invDarkMatter)
@@ -289,8 +291,6 @@ namespace SpaceGame2._0
                     }
                 } while (sellInput != "");
             }
-        
     }
-
 }
 

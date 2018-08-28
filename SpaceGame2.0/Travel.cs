@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SpaceGame2._0
 {
-    class Travel
+    public class Travel
     {
         private static int currentLocation = 0;
         private static int earth = 1;
