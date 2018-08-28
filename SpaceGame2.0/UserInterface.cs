@@ -32,7 +32,7 @@ namespace SpaceGame2._0
         
         public static void PublicUI()
         {
-            UI(Cargo.inventory, Cargo.maxInventory, Story.character, Program.credits, 0);
+            UI(Cargo.inventory, Cargo.maxInventory, Story.character, Cargo.credits, 0);
         }
     }
 }

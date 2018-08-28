@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace SpaceGame2._0
 {
     public class Story
-    {
+    { 
         public static string character;
 
         public static void Intro()

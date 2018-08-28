@@ -7,15 +7,18 @@ using System.Threading.Tasks;
 namespace SpaceGame2._0
 {
     class Program
-    {
+    { 
         public static string userInput;
-        public static int credits = 10000;
-        
+        private static bool gameOver = false;
 
         static void Main(string[] args)
         {
+
             Story.Intro();
-            MainMenu.mainMenu(userInput);
+            do
+            {
+                MainMenu.Menu(userInput);
+            } while (gameOver == false);
         }
     }
 }

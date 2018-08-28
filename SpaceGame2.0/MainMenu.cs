@@ -13,7 +13,7 @@ namespace SpaceGame2._0
 
         }
 
-        public static void mainMenu(string userInput)
+        public static void Menu(string userInput)
         {
             UserInterface.PublicUI();
             Console.WriteLine("You are on planet {0}! Current year is {1}!", 0, 0);
@@ -40,11 +40,11 @@ namespace SpaceGame2._0
                 }
                 else if ((userInput == "Sell") || (userInput == "sell"))
                 {
-                    //Sell.SellMenu();
+                    Cargo.SellMenu();
                 }
                 else if ((userInput == "Inv") || (userInput == "inv"))
                 {
-                    //Inventory(maxInventory, curInventory);
+                    Cargo.InventoryUI(Cargo.maxInventory, Cargo.inventory);
                 }
                 else if ((userInput == "Travel") || (userInput == "travel"))
                 {
