@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace SpaceGame2._0
 {
-    class Program
+    class MainMenu
     {
 
-        static void Main(string[] args)
-        {
-            Story.Intro();
 
-        }
+
+
     }
 }
