@@ -28,12 +28,12 @@ namespace SpaceGame2._0
         public static int inventory = 0;
         public static int maxInventory = 3;       
 
+        // Code for Inventory
         private static int InventoryTotal(int invFood, int invResearch, int invAnimals, int invWater, int invDarkMatter)
         {
             inventory = invFood + invResearch + invAnimals + invWater + invDarkMatter;           
             return inventory;
         }
-
         public static int InventoryUI(int maxInventory, int inventory)
         {
             // remaining inventory space
@@ -58,7 +58,6 @@ namespace SpaceGame2._0
             credits -= costItem;
             return credits;
         }
-
         private static int InventoryAdd(int invItem)
         {
             if (invItem == invFood)
@@ -84,7 +83,6 @@ namespace SpaceGame2._0
 
             return invItem;
         }
-
         private static int Buy(int inventory, int maxInventory, int credits, int costItem, int invItem)
         {
             if ((invItem < maxInventory) && (credits >= costItem))
@@ -109,7 +107,6 @@ namespace SpaceGame2._0
 
             return invItem;
         }
-
         public static void BuyMenu()
         {
             string buyInput = "";
@@ -202,13 +199,11 @@ namespace SpaceGame2._0
 
             return invItem;
         }
-
         private static int CreditsSell(int costItem)
         {
             credits += costItem;
             return credits;
         }
-
         public static int Sell(int inventory, int maxInventory, int credits, int costItem, int invItem)
             {
                 if (invItem >= 1)
@@ -227,7 +222,6 @@ namespace SpaceGame2._0
 
                 return invItem;
             }
-
         public static void SellMenu()
             {
                 string sellInput = "";
