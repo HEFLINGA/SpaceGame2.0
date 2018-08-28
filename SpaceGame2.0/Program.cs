@@ -9,16 +9,11 @@ namespace SpaceGame2._0
     class Program
     { 
         public static string userInput;
-        private static bool gameOver = false;
 
         static void Main(string[] args)
         {
-
             Story.Intro();
-            do
-            {
-                MainMenu.Menu(userInput);
-            } while (gameOver == false);
+            MainMenu.Menu(userInput);
         }
     }
 }

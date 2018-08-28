@@ -11,6 +11,7 @@ namespace SpaceGame2._0
         // credits
         public static int credits = 10000;
         public static int totalCredits = 0;
+
         // cost of different cargo
         private static int costFood = 2000;
         private static int costResearch = 3000;
