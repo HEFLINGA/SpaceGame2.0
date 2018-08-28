@@ -33,7 +33,7 @@ namespace SpaceGame2._0
         
         public static void PublicUI()
         {
-            UI(0, 0, 0, 0, 0, 0, 3, Story.character, 10000, 0);
+            UI(0, 0, 0, 0, 0, 0, 3, Story.character, Program.credits, 0);
         }
     }
 }
