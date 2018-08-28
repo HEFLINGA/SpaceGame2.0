@@ -15,11 +15,6 @@ namespace SpaceGame2._0
         public double destX;
         public double destY;
 
-        public Planet()
-        {
-
-        }
-
         public Planet(string name, int planet, double x, double y, double destX, double destY)
         {
             this.name = name;

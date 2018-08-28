@@ -18,7 +18,7 @@ namespace SpaceGame2._0
         public static Planet currentPlanet = new Planet("", 0, 0, 0, 0, 0);
 
         // Code for Planets
-        public static int PlanetaryTravel()
+        public static int CurrentLocation()
         {
             if (currentLocation == earth)
             {
@@ -46,6 +46,45 @@ namespace SpaceGame2._0
             }
 
             return currentLocation;
+        }
+
+        // Code to check your planet
+        public static int Traveling()
+        {
+            UserInterface.PublicUI();
+            if (currentPlanet.planet == earth)
+            {
+                Console.WriteLine("You are already here!! No need to travel anywhere..");
+                Console.WriteLine("Press 'enter' to return to Menu");
+                Console.ReadLine();
+            }
+            else if (currentPlanet != earth)
+            {
+                destX = 0;
+                destY = 0;
+                Console.WriteLine("Heading to Earth!");
+                Console.WriteLine("Distance is: {0}LYs", Math.Round(Distance(x, y, destX, destY), 3));
+                Console.WriteLine("It will take you: {0}yrs", timePassage = Math.Round(Distance(x, y, destX, destY) / Velocity(speed), 2));
+                Console.WriteLine();
+                Console.WriteLine("type 'GO' to depart");
+                Console.WriteLine("press 'enter' to go back to main menu");
+                string conf = Console.ReadLine();
+
+                if (conf == "GO")
+                {
+                    currentPlanet = earth;
+                    time += timePassage;
+                    Planet(earth, alphaCentauri, trappist, krootabulon);
+                }
+                else
+                {
+                    Console.WriteLine("Returning to Menu");
+                    System.Threading.Thread.Sleep(1100);
+                }
+
+            }
+
+            return currentPlanet;
         }
     }
 }
