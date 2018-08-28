@@ -9,8 +9,7 @@ namespace SpaceGame2._0
     class UserInterface
     {
         // TODO - Change values of UI to actually take real values
-        private static void UI(int curInventory, int invFood, int invResearch, int invAnimals, int invWater, int invFuel, int maxInventory, 
-            string character, int credits, double time)
+        private static void UI(int inventory, string character, int credits, double time)
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Red;
@@ -18,7 +17,7 @@ namespace SpaceGame2._0
             Console.WriteLine("________________________________________________________________________________________________________________________");
             Console.SetCursorPosition(30, 1);
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("Cargo: {0}/{1}", curInventory = invFood + invResearch + invAnimals + invWater + invFuel, maxInventory);
+            Console.WriteLine("Cargo: {0}/{1}", inventory, maxInventory);
             Console.SetCursorPosition(5, 1);
             Console.WriteLine("Name: {0}", character);
             Console.SetCursorPosition(55, 1);
