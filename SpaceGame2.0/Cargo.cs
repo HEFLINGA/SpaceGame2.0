@@ -26,17 +26,36 @@ namespace SpaceGame2._0
         private static int invDarkMatter = 0;
         private static int remInventory = maxInventory - inventory;
         public static int inventory = 0;
-        public static int maxInventory = 3;
+        public static int maxInventory = 3;       
 
+        private static int InventoryTotal(int invFood, int invResearch, int invAnimals, int invWater, int invDarkMatter)
+        {
+            inventory = invFood + invResearch + invAnimals + invWater + invDarkMatter;           
+            return inventory;
+        }
+
+        public static int InventoryUI(int maxInventory, int inventory)
+        {
+            // remaining inventory space
+            remInventory = maxInventory - inventory;
+            InventoryTotal(invFood, invResearch, invAnimals, invWater, invDarkMatter);
+
+            Console.WriteLine("You have {0} Food", invFood);
+            Console.WriteLine("You have {0} Research", invResearch);
+            Console.WriteLine("You have {0} Animals", invAnimals);
+            Console.WriteLine("You have {0} Water", invWater);
+            Console.WriteLine("You have {0} Fuel", invDarkMatter);
+            Console.WriteLine("You have {0} out of {1} spaces remaining", remInventory, maxInventory);
+            Console.WriteLine("Press 'Enter' to continue");
+            Console.ReadLine();
+
+            return remInventory;
+        }
+
+        // Code for Buying Inventory
         private static int CreditsBuy(int costItem)
         {
             credits -= costItem;
-            return credits;
-        }
-
-        private static int CreditsSell(int costItem)
-        {
-            credits += costItem;
             return credits;
         }
 
@@ -64,56 +83,6 @@ namespace SpaceGame2._0
             }
 
             return invItem;
-        }
-
-        private static int InventorySub(int invItem)
-        {
-            if (invItem == invFood)
-            {
-                invFood -= 1;
-            }
-            else if (invItem == invResearch)
-            {
-                invResearch -= 1;
-            }
-            else if (invItem == invAnimals)
-            {
-                invAnimals -= 1;
-            }
-            else if (invItem == invWater)
-            {
-                invWater -= 2;
-            }
-            else if (invItem == invDarkMatter)
-            {
-                invDarkMatter -= 5;
-            }
-
-            return invItem;
-        }
-
-        private static int InventoryTotal(int invFood, int invResearch, int invAnimals, int invWater, int invDarkMatter)
-        {
-            inventory = invFood + invResearch + invAnimals + invWater + invDarkMatter;           
-            return inventory;
-        }
-
-        public static int InventoryUI(int maxInventory, int inventory)
-        {
-            // remaining inventory space
-            remInventory = maxInventory - inventory;
-            InventoryTotal(invFood, invResearch, invAnimals, invWater, invDarkMatter);
-
-            Console.WriteLine("You have {0} Food", invFood);
-            Console.WriteLine("You have {0} Research", invResearch);
-            Console.WriteLine("You have {0} Animals", invAnimals);
-            Console.WriteLine("You have {0} Water", invWater);
-            Console.WriteLine("You have {0} Fuel", invDarkMatter);
-            Console.WriteLine("You have {0} out of {1} spaces remaining", remInventory, maxInventory);
-            Console.WriteLine("Press 'Enter' to continue");
-            Console.ReadLine();
-
-            return remInventory;
         }
 
         private static int Buy(int inventory, int maxInventory, int credits, int costItem, int invItem)
@@ -204,95 +173,128 @@ namespace SpaceGame2._0
                         Console.Clear();
                         break;
                 }
+            } while (buyInput != "");            
+        }
 
-            }
-            }
-
-        public static int Sell(int inventory, int maxInventory, int credits, int costItem, int invItem)
+        // Code for Selling Inventory
+        private static int InventorySub(int invItem)
         {
-            if (invItem >= 1)
+            if (invItem == invFood)
             {
-                CreditsSell(costItem);
-                totalCredits += costItem;
-                InventorySub(invItem);
+                invFood -= 1;
             }
-            else if (invItem == 0)
+            else if (invItem == invResearch)
             {
-                UserInterface.PublicUI();
-                Console.WriteLine("You do not have any Food in your inventory to sell!");
-                Console.WriteLine("Press 'Enter' to return to Menu");
-                Console.ReadLine();
+                invResearch -= 1;
+            }
+            else if (invItem == invAnimals)
+            {
+                invAnimals -= 1;
+            }
+            else if (invItem == invWater)
+            {
+                invWater -= 2;
+            }
+            else if (invItem == invDarkMatter)
+            {
+                invDarkMatter -= 5;
             }
 
             return invItem;
-        }        
+        }
+
+        private static int CreditsSell(int costItem)
+        {
+            credits += costItem;
+            return credits;
+        }
+
+        public static int Sell(int inventory, int maxInventory, int credits, int costItem, int invItem)
+            {
+                if (invItem >= 1)
+                {
+                    CreditsSell(costItem);
+                    totalCredits += costItem;
+                    InventorySub(invItem);
+                }
+                else if (invItem == 0)
+                {
+                    UserInterface.PublicUI();
+                    Console.WriteLine("You do not have any Food in your inventory to sell!");
+                    Console.WriteLine("Press 'Enter' to return to Menu");
+                    Console.ReadLine();
+                }
+
+                return invItem;
+            }
 
         public static void SellMenu()
-        {
-            string sellInput = "";
+            {
+                string sellInput = "";
 
-            do
-            {                
-                InventoryTotal(invFood, invResearch, invAnimals, invWater, invDarkMatter);
-                UserInterface.PublicUI();
-
-                Console.WriteLine("What would you like to Sell?: \n" +
-                                    "(Type name of Item to purchase)");
-                Console.WriteLine("press 'Enter' to leave the trading post");
-                Console.WriteLine();
-                Console.WriteLine($"Food, sale price:     {costFood}");
-                Console.WriteLine($"Research, sale price: {costResearch}");
-                Console.WriteLine($"Animals, sale price:  {costAnimals}");
-                Console.WriteLine($"Water, sale price:    {costWater}");
-                Console.WriteLine($"Fuel, sale price:     {costDarkMatter}");
-
-                sellInput = Console.ReadLine();
-                switch (sellInput)
+                do
                 {
-                    case "Food":
-                    case "food":
-                        Console.Clear();
-                        Sell(inventory, maxInventory, credits, costFood, invFood);
-                        InventoryTotal(invFood, invResearch, invAnimals, invWater, invDarkMatter);
-                        UserInterface.PublicUI();
-                        break;
-                    case "Research":
-                    case "research":
-                        Console.Clear();
-                        Sell(inventory, maxInventory, credits, costResearch, invResearch);
-                        InventoryTotal(invFood, invResearch, invAnimals, invWater, invDarkMatter);
-                        UserInterface.PublicUI();
-                        break;
-                    case "animals":
-                    case "Animals":
-                        Console.Clear();
-                        Sell(inventory, maxInventory, credits, costAnimals, invAnimals);
-                        InventoryTotal(invFood, invResearch, invAnimals, invWater, invDarkMatter);
-                        UserInterface.PublicUI();
-                        break;
-                    case "water":
-                    case "Water":
-                        Console.Clear();
-                        Sell(inventory, maxInventory, credits, costWater, invWater);
-                        InventoryTotal(invFood, invResearch, invAnimals, invWater, invDarkMatter);
-                        UserInterface.PublicUI();
-                        break;
-                    case "Dark Matter":
-                    case "dark matter":
-                        Console.Clear();
-                        Sell(inventory, maxInventory, credits, costDarkMatter, invDarkMatter);
-                        InventoryTotal(invFood, invResearch, invAnimals, invWater, invDarkMatter);
-                        UserInterface.PublicUI();
-                        break;
-                    case "":
-                        Console.WriteLine("Returning to Menu");
-                        System.Threading.Thread.Sleep(1000);
-                        Console.Clear();
-                        break;
+                    InventoryTotal(invFood, invResearch, invAnimals, invWater, invDarkMatter);
+                    UserInterface.PublicUI();
 
-                }
-            } while (sellInput != "");
-        }
+                    Console.WriteLine("What would you like to Sell?: \n" +
+                                        "(Type name of Item to purchase)");
+                    Console.WriteLine("press 'Enter' to leave the trading post");
+                    Console.WriteLine();
+                    Console.WriteLine($"Food, sale price:     {costFood}");
+                    Console.WriteLine($"Research, sale price: {costResearch}");
+                    Console.WriteLine($"Animals, sale price:  {costAnimals}");
+                    Console.WriteLine($"Water, sale price:    {costWater}");
+                    Console.WriteLine($"Fuel, sale price:     {costDarkMatter}");
+
+                    sellInput = Console.ReadLine();
+                    switch (sellInput)
+                    {
+                        case "Food":
+                        case "food":
+                            Console.Clear();
+                            Sell(inventory, maxInventory, credits, costFood, invFood);
+                            InventoryTotal(invFood, invResearch, invAnimals, invWater, invDarkMatter);
+                            UserInterface.PublicUI();
+                            break;
+                        case "Research":
+                        case "research":
+                            Console.Clear();
+                            Sell(inventory, maxInventory, credits, costResearch, invResearch);
+                            InventoryTotal(invFood, invResearch, invAnimals, invWater, invDarkMatter);
+                            UserInterface.PublicUI();
+                            break;
+                        case "animals":
+                        case "Animals":
+                            Console.Clear();
+                            Sell(inventory, maxInventory, credits, costAnimals, invAnimals);
+                            InventoryTotal(invFood, invResearch, invAnimals, invWater, invDarkMatter);
+                            UserInterface.PublicUI();
+                            break;
+                        case "water":
+                        case "Water":
+                            Console.Clear();
+                            Sell(inventory, maxInventory, credits, costWater, invWater);
+                            InventoryTotal(invFood, invResearch, invAnimals, invWater, invDarkMatter);
+                            UserInterface.PublicUI();
+                            break;
+                        case "Dark Matter":
+                        case "dark matter":
+                            Console.Clear();
+                            Sell(inventory, maxInventory, credits, costDarkMatter, invDarkMatter);
+                            InventoryTotal(invFood, invResearch, invAnimals, invWater, invDarkMatter);
+                            UserInterface.PublicUI();
+                            break;
+                        case "":
+                            Console.WriteLine("Returning to Menu");
+                            System.Threading.Thread.Sleep(1000);
+                            Console.Clear();
+                            break;
+
+                    }
+                } while (sellInput != "");
+            }
+        
     }
 
 }
