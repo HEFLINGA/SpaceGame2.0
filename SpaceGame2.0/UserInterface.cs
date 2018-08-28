@@ -9,7 +9,7 @@ namespace SpaceGame2._0
     class UserInterface
     {
         // TODO - Change values of UI to actually take real values
-        private static void UI(int inventory, string character, int credits, double time)
+        private static void UI(int inventory, int maxInventory, string character, int credits, double time)
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Red;
@@ -32,7 +32,7 @@ namespace SpaceGame2._0
         
         public static void PublicUI()
         {
-            UI(0, 0, 0, 0, 0, 0, 3, Story.character, Program.credits, 0);
+            UI(Cargo.inventory, Cargo.maxInventory, Story.character, Program.credits, 0);
         }
     }
 }

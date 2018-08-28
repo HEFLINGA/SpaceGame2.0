@@ -36,7 +36,7 @@ namespace SpaceGame2._0
                 }
                 else if ((userInput == "Buy") || (userInput == "buy"))
                 {
-                    //Buy.BuyMenu();
+                    Cargo.BuyMenu();
                 }
                 else if ((userInput == "Sell") || (userInput == "sell"))
                 {

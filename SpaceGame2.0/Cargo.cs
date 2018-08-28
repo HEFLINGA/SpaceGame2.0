@@ -22,8 +22,8 @@ namespace SpaceGame2._0
         private static int invWater = 0;
         private static int invDarkMatter = 0;
         private static int remInventory = 0;
-        private static int inventory = 0;
-        private static int maxInventory = 3;
+        public static int inventory = 0;
+        public static int maxInventory = 3;
 
         public static int Inventory(int maxInventory, int inventory)
         {
@@ -50,31 +50,30 @@ namespace SpaceGame2._0
             return inventory;
         }
 
-        private int CargoFood(int inventory, int maxInventory, int credits, int costFood, int invFood)
+        private static int Buy(int inventory, int maxInventory, int credits, int costItem, int invItem)
         {
-            if ((inventory < maxInventory) && (credits >= costFood))
+            if ((inventory < maxInventory) && (credits >= costItem))
             {
-                credits -= costFood;
-                invFood += 1;
+                credits -= costItem;
+                invItem += invItem;
             }
-            else if (credits <= costFood)
+            else if (credits <= costItem)
             {
                 UserInterface.PublicUI();
                 Console.WriteLine("You do not have enough Credits to purchase item!");
                 Console.WriteLine("Press 'Enter' to return to Menu");
                 Console.ReadLine();
             }
-            else if ((remInventory == 0) || (inventory == maxInventory))
+            else if ((remInventory < invItem) || (inventory == maxInventory))
             {
-                UI();
+                UserInterface.PublicUI();
                 Console.WriteLine("You do not have enough space in your inventory!");
                 Console.WriteLine("Press 'Enter' to return to Menu");
                 Console.ReadLine();
             }
 
-            return invFood;
-        }
-
+            return invItem;
+        }        
 
         public static void BuyMenu()
         {
@@ -88,11 +87,11 @@ namespace SpaceGame2._0
                                     "(Type name of Item to purchase)");
                 Console.WriteLine("press 'Enter' to leave the trading post");
                 Console.WriteLine();
-                Console.WriteLine($"{cargoName[0]}, price: {cargoCost[0]}. This will take up {cargoSace[0]} cargo slot");
-                Console.WriteLine($"{cargoName[1]}, price: {cargoCost[1]}. This will take up {cargoSace[0]} cargo slot");
-                Console.WriteLine($"{cargoName[2]}, price: {cargoCost[2]}. This will take up {cargoSace[0]} cargo slot");
-                Console.WriteLine($"{cargoName[3]}, price: {cargoCost[3]}. This will take up {cargoSace[0]} cargo slots");
-                Console.WriteLine($"{cargoName[4]}, price: {cargoCost[4]}. This will take up {cargoSace[0]} cargo slots");
+                Console.WriteLine($"Food, price:        {costFood}. This will take up 1 cargo slot");
+                Console.WriteLine($"Research, price:    {costResearch}. This will take up 1 cargo slot");
+                Console.WriteLine($"Animals, price:     {costAnimals}. This will take up 1 cargo slot");
+                Console.WriteLine($"Water, price:       {costWater}. This will take up 2 cargo slots");
+                Console.WriteLine($"Dark Matter, price: {costDarkMatter}. This will take up 5 cargo slots");
 
                 buyInput = Console.ReadLine();
                 switch (buyInput)
@@ -100,31 +99,31 @@ namespace SpaceGame2._0
                     case "Food":
                     case "food":
                         Console.Clear();
-                        CargoFood();
+                        Buy(inventory, maxInventory, Program.credits, costFood, invFood);
                         UserInterface.PublicUI();
                         break;
                     case "Research":
                     case "research":
                         Console.Clear();
-                        CargoResearch();
+                        Buy(inventory, maxInventory, Program.credits, costResearch, invResearch);
                         UserInterface.PublicUI();
                         break;
                     case "animals":
                     case "Animals":
                         Console.Clear();
-                        CargoAnimals();
+                        Buy(inventory, maxInventory, Program.credits, costAnimals, invAnimals);
                         UserInterface.PublicUI();
                         break;
                     case "water":
                     case "Water":
                         Console.Clear();
-                        CargoWater();
+                        Buy(inventory, maxInventory, Program.credits, costWater, invWater);
                         UserInterface.PublicUI();
                         break;
                     case "fuel":
                     case "Fuel":
                         Console.Clear();
-                        CargoFuel();
+                        Buy(inventory, maxInventory, Program.credits, costDarkMatter, invDarkMatter);
                         UserInterface.PublicUI();
                         break;
                     case "":
