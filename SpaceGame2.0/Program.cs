@@ -8,8 +8,10 @@ namespace SpaceGame2._0
 {
     class Program
     {
+        private static string character;
         static void Main(string[] args)
         {
+            Story.Intro();
         }
     }
 }
