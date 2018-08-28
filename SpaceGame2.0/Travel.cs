@@ -18,7 +18,7 @@ namespace SpaceGame2._0
         public static Planet currentPlanet = new Planet("", 0, 0, 0, 0, 0);
 
         // Code for Planets
-        public static int CurrentLocation()
+        public static int PlanetaryTravel()
         {
             if (currentLocation == earth)
             {
@@ -49,10 +49,11 @@ namespace SpaceGame2._0
         }
 
         // Code to check your planet
-        public static int Traveling()
+        public static int Earth()
         {
+
             UserInterface.PublicUI();
-            if (currentPlanet.planet == earth)
+            if (currentPlanet == earth)
             {
                 Console.WriteLine("You are already here!! No need to travel anywhere..");
                 Console.WriteLine("Press 'enter' to return to Menu");
